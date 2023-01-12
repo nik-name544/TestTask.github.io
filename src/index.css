@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+th {
+  font-family: "Inter", sans-serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+html,
+* {
+  box-sizing: border-box;
+}
+
+.css-h64l3h-MuiAutocomplete-root .MuiAutocomplete-inputRoot {
+  flex-wrap: nowrap !important;
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  border: 1px solid #d1d4de;
+  box-shadow: 0px 5px 32px rgba(31, 41, 54, 0.08);
+  border-radius: 6px !important;
+}

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TestTask.github.io/static/css/main.7ff96348.css",
+    "main.js": "/TestTask.github.io/static/js/main.695c114d.js",
+    "index.html": "/TestTask.github.io/index.html",
+    "main.7ff96348.css.map": "/TestTask.github.io/static/css/main.7ff96348.css.map",
+    "main.695c114d.js.map": "/TestTask.github.io/static/js/main.695c114d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ff96348.css",
+    "static/js/main.695c114d.js"
+  ]
+}

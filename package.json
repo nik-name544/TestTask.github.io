@@ -2,7 +2,7 @@
 	"name": "my-app",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://nik-name544.github.io/TestTask.github.io/",
+	"homepage": "https://nik-name544.github.io/TestTask.github.io",
 	"dependencies": {
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",

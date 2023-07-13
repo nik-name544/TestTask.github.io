@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { emailData } from "../data/data";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -9,48 +8,20 @@ import { Button } from "../components/Button/buttonStyle";
 import { InviteWrapper } from "../components/InviteWrapper/inviteWrapperStyle";
 import { InputLabel } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   SearchInputWrapper,
   SearchInput,
 } from "../components/SearchInput/searchInput";
-import SearchIcon from "@mui/icons-material/Search";
+import { observer } from "mobx-react-lite";
+import MainPageStore from "../store/mainPageStore";
 
-function MainPage() {
-  const [value, setValue] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [members, setMembers] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
 
-  const handleChange = (event) => {
-    if (event.target.value !== "") {
-      const filteredSuggestions = members.filter((itemData) => { 
-        const value = event.target.value.toUpperCase();
-        const firstName =
-          itemData.firstName.toUpperCase() +
-          " " +
-          itemData.lastName.toUpperCase();
 
-        return value && firstName.includes(value) && firstName !== value;
-      });
-      setSearchValue(event.target.value);
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSearchValue("");
-      setSuggestions([]);
-    }
-  };
+const mainPageStore = new MainPageStore();
 
-  const handleClick = (email) => {
-    if (!!email) {
-      let tempMembers = [...members].filter((item) => item.label !== email);
-      setMembers(tempMembers);
-    } else {
-      let tempMembers = Array.from(new Set([...members, ...value]));
-      setMembers(tempMembers);
-      setValue([]);
-    }
-  };
+const MainPage = observer(() => {
+  const { value, inputValue, members, suggestions, searchValue } = mainPageStore;
 
   return (
     <div>
@@ -74,11 +45,13 @@ function MainPage() {
               aria-label=""
               options={emailData}
               value={value}
-              onChange={(event, newInputValue) => setValue(newInputValue)}
+              onChange={(event, newInputValue) => {
+                mainPageStore.value = newInputValue;
+              }}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) =>
-                setInputValue(newInputValue)
-              }
+              onInputChange={(event, newInputValue) => {
+                mainPageStore.inputValue = newInputValue;
+              }}
               getOptionLabel={(option) => option.label}
               renderInput={(params) => (
                 <TextField {...params} label="" placeholder="" />
@@ -87,7 +60,7 @@ function MainPage() {
               sx={{ width: "444px", height: "40px" }}
             />
           </div>
-          <Button onClick={() => handleClick()}>Send invite</Button>
+          <Button onClick={() => mainPageStore.handleClick()}>Send invite</Button>
         </InviteWrapper>
       </ComponentWrapper>
       <ComponentWrapper withoutBorder>
@@ -99,17 +72,17 @@ function MainPage() {
           <SearchInput
             type="text"
             value={searchValue}
-            onInput={handleChange}
+            onInput={mainPageStore.handleChange}
             placeholder="Search"
           />
         </SearchInputWrapper>
         <UserItem
           userData={suggestions.length !== 0 ? suggestions : members}
-          handleClick={handleClick}
+          handleClick={mainPageStore.handleClick}
         />
       </ComponentWrapper>
     </div>
   );
-}
+});
 
 export default MainPage;
